@@ -1,0 +1,58 @@
+
+<div class="questionnaire-container">
+  <div class="progress-bar">
+    <div class="progress" [style.width.%]="progress"></div>
+  </div>
+  
+  <div class="question-container" *ngIf="!completed">
+    <div *ngIf="!loading" class="question-content">
+      <h2>{{ questions[currentQuestion].title }}</h2>
+      <p>{{ questions[currentQuestion].question }}</p>
+      
+      <div *ngIf="questions[currentQuestion].type === 'slider'" class="slider-container">
+        <input 
+          type="range" 
+          [min]="questions[currentQuestion].min" 
+          [max]="questions[currentQuestion].max" 
+          [(ngModel)]="questions[currentQuestion].value"
+          class="slider">
+        <div class="slider-value">{{ questions[currentQuestion].value }}</div>
+      </div>
+      
+      <div *ngIf="questions[currentQuestion].type === 'select'" class="select-container">
+        <select [(ngModel)]="questions[currentQuestion].value" class="select-input">
+          <option *ngFor="let option of questions[currentQuestion].options" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+      
+      <div class="navigation-buttons">
+        <button 
+          *ngIf="currentQuestion > 0" 
+          (click)="previousQuestion()" 
+          class="btn btn-secondary">
+          Anterior
+        </button>
+        <button 
+          (click)="nextQuestion()" 
+          class="btn btn-primary">
+          {{ currentQuestion < questions.length - 1 ? 'Siguiente' : 'Enviar' }}
+        </button>
+      </div>
+    </div>
+    
+    <div *ngIf="loading" class="loading-container">
+      <app-loading-indicator></app-loading-indicator>
+      <p>Procesando información...</p>
+    </div>
+  </div>
+  
+  <div *ngIf="completed && result" class="results-container">
+    <app-results-display [results]="result"></app-results-display>
+    
+    <button (click)="resetForm()" class="btn btn-primary">
+      Comenzar de nuevo
+    </button>
+  </div>
+</div>

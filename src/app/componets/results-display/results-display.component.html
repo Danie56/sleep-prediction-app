@@ -1,0 +1,43 @@
+<div class="results-wrapper">
+  <h2 class="results-title">Resultados de Predicción</h2>
+  
+  <div class="prediction-result">
+    <div class="prediction-card">
+      <div class="prediction-value">{{ results.predictions.RandomForest }}</div>
+      <div class="prediction-label">Predicción</div>
+    </div>
+    
+    <div class="prediction-card">
+      <div class="prediction-value">{{results.accuracies.RandomForest}}</div>
+      <div class="prediction-label">Probabilidad</div>
+    </div>
+  </div>
+  
+  <div class="charts-container">
+    <div class="chart-box">
+      <canvas #barChart></canvas>
+    </div>
+    
+    <div class="chart-box">
+      <canvas #radarChart></canvas>
+    </div>
+  </div>
+  
+  <div class="accuracy-table">
+    <h3>Precisión por Algoritmo</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Algoritmo</th>
+          <th>Precisión</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let algorithm of getAlgorithms()">
+          <td>{{ algorithm }}</td>
+          <td>{{ results.predictions[algorithm] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

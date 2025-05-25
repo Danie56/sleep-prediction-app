@@ -1,12 +1,26 @@
 import { Component } from '@angular/core';
+import { PredictionResponse } from './models/prediction.model';
+import { SleepQuestionnaireComponent } from './componets/sleep-questionnaire/sleep-questionnaire.component';
+import { ResultsDisplayComponent } from './componets/results-display/results-display.component';
 import { RouterOutlet } from '@angular/router';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
+    imports: [
+    CommonModule, 
+    SleepQuestionnaireComponent,
+  ],
+
 })
+
 export class AppComponent {
-  title = 'sleep-prediction-app';
+  title = 'Predicción de Calidad del Sueño';
+  currentYear = new Date().getFullYear();
+  
+  handleResults(event: PredictionResponse): void {
+    console.log('Resultados recibidos:', event);
+    // Aquí puedes manejar los resultados a nivel de aplicación si es necesario
+  }
 }
