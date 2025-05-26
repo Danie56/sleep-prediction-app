@@ -10,7 +10,7 @@ import { PredictionRequest, PredictionResponse } from '../models/prediction.mode
   providedIn: 'root'
 })
 export class PredictionService {
-  private apiUrl = 'http://localhost:8000/predict/';
+  private apiUrl = 'https://django-production-4228.up.railway.app/predict/';
 
   constructor(private http: HttpClient) { }
 
