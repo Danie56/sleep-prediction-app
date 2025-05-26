@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 })
 
 export class AppComponent {
-  title = 'Predicción de Calidad del Sueño';
+  title = 'Predicción de Estado de animo';
   currentYear = new Date().getFullYear();
   
   handleResults(event: PredictionResponse): void {
